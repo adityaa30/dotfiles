@@ -18,8 +18,20 @@ parser.add_argument(
     type=int
 )
 
+# Add an extra argument if to save the output to a .txt file
+parser.add_argument(
+    '-O',
+    '--output',
+    help='Output the result to a file',
+    action='store_true',
+)
+
 # Get all the arguments entered by the user
 args = parser.parse_args()
 
 result = fibonacci(args.num)
 print(result)
+
+if args.output:
+    with open('fibonacci.txt', 'a') as f:
+        f.write('{}th fibonacci number: {}\n'.format(args.num, result))
