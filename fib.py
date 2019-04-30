@@ -11,6 +11,12 @@ def fibonacci(n):
 # Create the ArgumentParser instance
 parser = argparse.ArgumentParser()
 
+# Create a group where only one argument will be accepted at once
+# thereby mutually exclusive group
+group = parser.add_mutually_exclusive_group()
+group.add_argument('-v', '--verbose', action='store_true')
+group.add_argument('-q', '--quiet', action='store_true')
+
 # Add an argument to the parser
 parser.add_argument(
     'num',
@@ -22,15 +28,21 @@ parser.add_argument(
 parser.add_argument(
     '-O',
     '--output',
-    help='Output the result to a file',
+    help='Output the result to a file (fibonacci.txt)',
     action='store_true',
 )
 
 # Get all the arguments entered by the user
 args = parser.parse_args()
 
+# Calculate the nth fibonacci number and output according to the given argument
 result = fibonacci(args.num)
-print(result)
+if args.verbose:
+    print('{}th fibonacci number: {}'.format(args.num, result))
+elif args.quiet:
+    print(result)
+else:
+    print('Fibonacci({}) = {}'.format(args.num, result))
 
 if args.output:
     with open('fibonacci.txt', 'a') as f:
