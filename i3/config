@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:FiraCode-Medium 10 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -166,11 +166,11 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3blocks -c ~/Documents/Projects/Others/my-scripts/i3/i3blocks.conf 
 }
 
 # Lock screen
-bindsym $mod+x exec /home/adityaa30/Documents/Projects/Others/my-scripts/i3lock/final-lock.sh
+bindsym $mod+x exec /home/adityaa30/Documents/Projects/Others/my-scripts/i3/final-lock.sh
 
 # Background
 exec_always feh --bg-scale /home/adityaa30/Pictures/Wallpapers/rowan_berries_grones_146614_3840x2160.jpg 
