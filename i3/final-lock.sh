@@ -1,6 +1,6 @@
 #!/bin/sh
 
-curr_dir=/home/adityaa30/Documents/Projects/Others/my-scripts/i3
+curr_dir=/home/aditya30/Documents/Projects/Others/my-scripts/i3
 temp_background=$curr_dir/temp.png
 lock_image=$curr_dir/lock.png
 
