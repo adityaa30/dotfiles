@@ -163,10 +163,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Create variable to dot-file folder
+set $file_dir /home/aditya30/Documents/Projects/Others/dot-config-files/i3
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks -c ~/Documents/Projects/Others/my-scripts/i3/i3blocks.conf 
+        status_command i3blocks -c $file_dir"/i3blocks.conf" 
 }
 
 # Pulse Audio controls
@@ -179,7 +182,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec ~/Documents/Projects/Others/my-scripts/i3/toggletouchpad.sh # toggle touchpad
+bindsym XF86TouchpadToggle exec $file_dir"/toggletouchpad.sh" # toggle touchpad
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -188,7 +191,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Lock screen
-bindsym $mod+x exec ~/Documents/Projects/Others/my-scripts/i3/final-lock.sh
+bindsym $mod+x exec $file_dir"/final-lock.sh"
 
 # Background
 exec_always feh --bg-scale ~/Pictures/firewatch-uhd-8k-wallpaper.jpg 
