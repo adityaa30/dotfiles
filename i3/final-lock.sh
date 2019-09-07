@@ -1,8 +1,11 @@
 #!/bin/sh
 
-curr_dir=/home/aditya30/Documents/Projects/Others/dot-config-files/i3
+curr_dir=/home/aditya30/Documents/Projects/Others/dot-config-files/pokemon-i3lock
 temp_background=$curr_dir/temp.png
-lock_image=$curr_dir/lock.png
+scrap_dir=$curr_dir/scrapped-data
+
+poke_name=`ls $scrap_dir | shuf -n 1`
+lock_image=${scrap_dir}/${poke_name}
 
 resolution=$(xrandr | grep 'current' | sed -E 's/.*current\s([0-9]+)\sx\s([0-9]+).*/\1x\2/')
 
