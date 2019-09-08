@@ -1,6 +1,6 @@
 #!/bin/sh
 
-curr_dir=/home/aditya30/Documents/Projects/Others/dot-config-files/pokemon-i3lock
+curr_dir=/home/aditya30/Documents/Projects/my-scripts/pokemon-i3lock
 temp_background=$curr_dir/temp.png
 scrap_dir=$curr_dir/scrapped-data
 

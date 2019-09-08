@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FiraCode-Medium 12 
+font pango:FiraCode-Medium 10 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -164,11 +164,12 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Create variable to dot-file folder
-set $file_dir /home/aditya30/Documents/Projects/Others/dot-config-files/i3
+set $file_dir /home/aditya30/Documents/Projects/my-scripts/i3
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+	position top
         status_command i3blocks -c $file_dir"/i3blocks.conf" 
 }
 
