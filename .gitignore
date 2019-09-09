@@ -3,6 +3,9 @@
 *~
 venv
 *.txt
+*.ttf
 
 touchpad
+
 pokemon-i3lock/scrapped-data
+pokemon-i3lock/scrapped-data-names

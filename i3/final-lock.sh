@@ -2,7 +2,7 @@
 
 curr_dir=/home/aditya30/Documents/Projects/my-scripts/pokemon-i3lock
 temp_background=$curr_dir/temp.png
-scrap_dir=$curr_dir/scrapped-data
+scrap_dir=$curr_dir/scrapped-data-names
 
 poke_name=`ls $scrap_dir | shuf -n 1`
 lock_image=${scrap_dir}/${poke_name}
