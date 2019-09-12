@@ -196,3 +196,6 @@ bindsym $mod+x exec $file_dir"/final-lock.sh"
 
 # Background
 exec_always feh --bg-scale ~/Pictures/firewatch-uhd-8k-wallpaper.jpg 
+
+# Screenshot
+bindsym $mod+p exec gnome-screenshot -a 
