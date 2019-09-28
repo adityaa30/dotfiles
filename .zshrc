@@ -77,6 +77,7 @@ plugins=(
 	rbenv
 	ruby
 	virtualenv
+	command-not-found
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -108,7 +109,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Prompt Segments
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs ssh virtualenv) 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 
 # Pokemonsay
@@ -124,3 +125,14 @@ export PATH=$PATH:$ANDROID_HOME/tools
 # CUDA 10.0
 export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+# Network Simulator 3
+export PATH=~/Documents/Projects/ns-allinone-3.29/ns-3.29${PATH:+:${PATH}}
+export PATH=~/Documents/Projects/ns-allinone-3.29/netanim-3.108${PATH:+:${PATH}}
+
+# Bake
+export BAKE_HOME=`pwd`/bake 
+export PATH=$PATH:$BAKE_HOME
+export PYTHONPATH=$PYTHONPATH:$BAKE_HOME
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
