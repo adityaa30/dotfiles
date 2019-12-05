@@ -108,7 +108,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias docker="sudo docker"
+
 # Prompt Segments
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs ssh virtualenv) 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 
@@ -116,7 +120,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs histor
 fortune | pokemonsay
 
 # JetBrains Scripts
-export PATH=$PATH:~/Scripts/
+export PATH=~/Scripts/${PATH:+:${PATH}}
+export PATH=~/.local/share/JetBrains/Toolbox/bin${PATH:+:${PATH}}
 
 # Android Studio
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -127,12 +132,20 @@ export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # Network Simulator 3
-export PATH=~/Documents/Projects/ns-allinone-3.29/ns-3.29${PATH:+:${PATH}}
-export PATH=~/Documents/Projects/ns-allinone-3.29/netanim-3.108${PATH:+:${PATH}}
+export PATH=~/Documents/Projects/ns-allinone-3.30.1/ns-3.30.1${PATH:+:${PATH}}
+export PATH=~/Documents/Projects/ns-allinone-3.30.1/netanim-3.108${PATH:+:${PATH}}
+
+# go-lang 1.13.3
+GOPATH=~/go
+export PATH=/usr/local/go/bin${PATH:+:${PATH}}
+export PATH=$GOPATH/bin${PATH:+:${PATH}}
+
+# Jadx
+export PATH=~/Documents/Projects/Others/jadx/build/jadx/bin${PATH:+:${PATH}}
 
 # Bake
-export BAKE_HOME=`pwd`/bake 
-export PATH=$PATH:$BAKE_HOME
-export PYTHONPATH=$PYTHONPATH:$BAKE_HOME
+# export BAKE_HOME=`pwd`/bake 
+# export PATH=$PATH:$BAKE_HOME
+# export PYTHONPATH=$PYTHONPATH:$BAKE_HOME
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
