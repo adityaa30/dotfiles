@@ -1,63 +1,124 @@
-"""" Enable Vundle: vim plugin manager
+filetype off                  " required
 
-" required before Vundle initialization
-" set nocompatible        " disable compatibility mode with vi
-" filetype off            " disable filetype detection (but re-enable later, see below)
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" set the runtime path to include Vundle, and initialize
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-" Plugin 'VundleVim/Vundle.vim'
-" Plugin 'wting/rust.vim' " enable syntax highlighting for rust
-" call vundle#end()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
 
-"""" Basic Behavior
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
 
-set number              " show line numbers
-set wrap                " wrap lines
-set encoding=utf-8      " set encoding to UTF-8 (default was "latin1")
-set mouse=a             " enable mouse support (might not work well on Mac OS X)
-set wildmenu            " visual autocomplete for command menu
-set lazyredraw          " redraw screen only when we need to
-set showmatch           " highlight matching parentheses / brackets [{()}]
-set laststatus=2        " always show statusline (even with only single window)
-set ruler               " show line and column number of the cursor on right side of statusline
-set visualbell          " blink cursor on error, instead of beeping
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
+" the glaive#Install() should go after the "call vundle#end()"
+call glaive#Install()
 
-"""" Vim Appearance
+" Autoformatting (github.com/google/vim-codefmt)
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType rust AutoFormatBuffer rustfmt
+  autocmd FileType vue AutoFormatBuffer prettier
+augroup END
 
-" put colorscheme files in ~/.vim/colors/
-colorscheme murphy " good colorschemes: murphy, slate, molokai, badwolf, solarized
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
-" use filetype-based syntax highlighting, ftplugins, and indentation
-syntax enable
-filetype plugin indent on
+set number
 
+" Fix (auto-)indentation
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
-"""" Tab settings
+" be iMproved, required (disable vi)
+set nocompatible              
 
-set tabstop=4           " width that a <TAB> character displays as
-set expandtab           " convert <TAB> key-presses to spaces
-set shiftwidth=4        " number of spaces to use for each step of (auto)indent
-set softtabstop=4       " backspace after pressing <TAB> will remove up to this many spaces
+" enable syntax and plugins (for netrw)
+syntax on
+filetype plugin on 
 
-set autoindent          " copy indent from current line when starting a new line
-set smartindent         " even better autoindent (e.g. add indent after '{')
+" Taken from https://www.youtube.com/watch?v=XA2WjJbmmoM&t=381s 
+" Title: How to Do 90% of What Plugins Do (With Just Vim)
 
+" FINDING FILES: ~
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
 
-"""" Search settings
+" Display all matching files when we tab complete
+set wildmenu
 
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
+" NOW WE CAN:
+" - Hit tab to :find by partial match
+" - Use * to make it fuzzy
+" THINGS TO CONSIDER: 
+" - :b lets you autocomplete any open buffer
+" - :ls lets you list the files open in active buffer
 
-" turn off search highlighting with <CR> (carriage-return)
-nnoremap <CR> :nohlsearch<CR><CR>
+" TAG JUMPING: ~
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
 
+" NOW WE CAN:
+" - Use ^] to jump to tag under curson
+" - Use g^] for ambiguos tags
+" - Use ^t to jump back up the tag stack
+" THINGS TO CONSIDER:
+" This doesn't help if you want a visual list of tags
 
-"""" Miscellaneous settings that might be worth enabling
+" AUTOCOMPLETE: ~
+" The good stuff is documented in |ins-completon|
+" HIGHLIGHTS:
+" - ^x^n for JUST this file
+" - ^x^f for filenames (works with our path trick!)
+" - ^x^] for tags only
+" - ^n for anything specified by the 'complete' option
 
-"set cursorline         " highlight current line
-"set background=dark    " configure Vim to use brighter colors
-"set autoread           " autoreload the file in Vim if it has been changed outside of Vim
+" FILE BROWSING: ~
+" Tweaks for browsing
+let g:netrw_banner=0					" disable annoying banner
+let g:netrw_browse_split=4		" open in prior window
+let g:netrw_altv=1						" open splits to the right
+let g:netrw_liststyle=3				" tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" NOW WE CAN:
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mappings
+
+" Show commands entered
+set showcmd
+
+" Map system clipboard to yank
+noremap y "+y 
+noremap yy V"+y 
+
+noremap p "+p
+

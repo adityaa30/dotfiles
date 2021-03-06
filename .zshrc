@@ -2,17 +2,35 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/aditya30/.oh-my-zsh"
+export ZSH="/Users/adityaa30/.oh-my-zsh"
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='231' # white
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='231' # white
+
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='000' # black
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='118' # green
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='000' # black
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='116' # blue
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='000' # black
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='226' # yellow
+
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs ssh virtualenv) 
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -33,7 +51,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -42,7 +60,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -64,8 +82,8 @@ ENABLE_CORRECTION="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
@@ -78,8 +96,8 @@ plugins=(
 	ruby
 	virtualenv
 	command-not-found
+	sudo
 )
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -109,43 +127,29 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias docker="sudo docker"
-
-# Prompt Segments
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs ssh virtualenv) 
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
-
-# Pokemonsay
-fortune | pokemonsay
-
-# JetBrains Scripts
-export PATH=~/Scripts/${PATH:+:${PATH}}
-export PATH=~/.local/share/JetBrains/Toolbox/bin${PATH:+:${PATH}}
-
-# Android Studio
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-
-# CUDA 10.0
-export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-
-# Network Simulator 3
-export PATH=~/Documents/Projects/ns-allinone-3.30.1/ns-3.30.1${PATH:+:${PATH}}
-export PATH=~/Documents/Projects/ns-allinone-3.30.1/netanim-3.108${PATH:+:${PATH}}
-
-# go-lang 1.13.3
-GOPATH=~/go
-export PATH=/usr/local/go/bin${PATH:+:${PATH}}
-export PATH=$GOPATH/bin${PATH:+:${PATH}}
-
-# Jadx
-export PATH=~/Documents/Projects/Others/jadx/build/jadx/bin${PATH:+:${PATH}}
-
-# Bake
-# export BAKE_HOME=`pwd`/bake 
-# export PATH=$PATH:$BAKE_HOME
-# export PYTHONPATH=$PYTHONPATH:$BAKE_HOME
+alias docker-compose="sudo docker-compose"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PYTHON_CONFIGURE_OPTS="--enable-shared"
+
+export CUSTOM_SCRIPTS_DIR="$HOME/Documents/Scripts"
+export PATH="$CUSTOM_SCRIPTS_DIR:$PATH"
+
+export DEPOT_TOOLS="$HOME/Documents/Tools/depot_tools"
+export PATH="$DEPOT_TOOLS:$PATH"
+
+# export DEPOT_TOOLS_DIR="$HOME/Documents/Projects/Dev/depot_tools"
+# export PATH="$DEPOT_TOOLS_DIR:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+export EDITOR=$(which vim)
