@@ -117,8 +117,16 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 set showcmd
 
 " Map system clipboard to yank
-noremap y "+y 
-noremap yy V"+y 
+nnoremap yy "+yy
+vnoremap y "+y
 
-noremap p "+p
+nnoremap p "+p
+vnoremap p "+p
+nnoremap P "+P
+vnoremap P "+P
+
+nnoremap dd "+dd
+vnoremap d "+d
+
+set clipboard+=unnamed
 

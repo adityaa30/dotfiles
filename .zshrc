@@ -7,6 +7,7 @@ export ZSH="/Users/adityaa30/.oh-my-zsh"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='231' # white
+POWERLEVEL9K_DIR_HOME_FOREGROUND='231' # white
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='231' # white
 
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND='000' # black
@@ -126,8 +127,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias docker="sudo docker"
-alias docker-compose="sudo docker-compose"
+# Docker 🐳
+# alias docker="sudo docker"
+# alias docker-compose="sudo docker-compose"
+
+# Kubernetes
+alias k="kubectl"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -144,6 +149,8 @@ export PATH="$CUSTOM_SCRIPTS_DIR:$PATH"
 
 export DEPOT_TOOLS="$HOME/Documents/Tools/depot_tools"
 export PATH="$DEPOT_TOOLS:$PATH"
+
+export GOPATH="$HOME/go"
 
 # export DEPOT_TOOLS_DIR="$HOME/Documents/Projects/Dev/depot_tools"
 # export PATH="$DEPOT_TOOLS_DIR:$PATH"
