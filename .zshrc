@@ -133,6 +133,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Kubernetes
 alias k="kubectl"
+alias d="docker"
+alias g="git"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

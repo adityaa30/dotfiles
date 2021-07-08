@@ -49,6 +49,10 @@ augroup END
 " Put your non-Plugin stuff after this line
 
 set number
+set nowrap
+
+" Highlight search items
+set hlsearch
 
 " Fix (auto-)indentation
 set shiftwidth=2
