@@ -4,7 +4,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='231' # white
 POWERLEVEL9K_DIR_HOME_FOREGROUND='231' # white
@@ -43,7 +43,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs histor
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -136,6 +136,9 @@ alias k="kubectl"
 alias d="docker"
 alias g="git"
 
+# Remove `...` such that no conflics while doing `bazel test ...`
+unalias '...'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR="$HOME/.nvm"
@@ -153,6 +156,7 @@ export DEPOT_TOOLS="$HOME/Documents/Tools/depot_tools"
 export PATH="$DEPOT_TOOLS:$PATH"
 
 export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 
 # export DEPOT_TOOLS_DIR="$HOME/Documents/Projects/Dev/depot_tools"
 # export PATH="$DEPOT_TOOLS_DIR:$PATH"
@@ -160,5 +164,9 @@ export GOPATH="$HOME/go"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# direnv
+echo -e "`date +"%Y-%m-%d %H:%M:%S"` direnv hooking zsh"
+eval "$(direnv hook zsh)"
 
 export EDITOR=$(which vim)
