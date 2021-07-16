@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -139,6 +146,14 @@ alias g="git"
 # Remove `...` such that no conflics while doing `bazel test ...`
 unalias '...'
 
+# JDK
+unset JAVA_HOME
+export JAVA8_HOME="$(/usr/libexec/java_home -v1.8)"
+export JAVA11_HOME="$(/usr/libexec/java_home -v11)"
+alias jdk_11='export JAVA_HOME="$JAVA11_HOME" && export PATH="$JAVA_HOME/bin:$PATH"'
+alias jdk_8='export JAVA_HOME="$JAVA8_HOME" && export PATH="$JAVA_HOME/bin:$PATH"'
+jdk_11 # Use jdk 11 as the default jdk
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR="$HOME/.nvm"
@@ -170,3 +185,6 @@ echo -e "`date +"%Y-%m-%d %H:%M:%S"` direnv hooking zsh"
 eval "$(direnv hook zsh)"
 
 export EDITOR=$(which vim)
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
