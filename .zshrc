@@ -21,10 +21,11 @@ source $ZSH/oh-my-zsh.sh
 # alias docker="sudo docker"
 # alias docker-compose="sudo docker-compose"
 
-# Single character shortcuts
+# Alias Shortcuts 🎬
 alias k="kubectl"
 alias d="docker"
 alias g="git"
+alias dc="docker-compose"
 
 # exa 
 # https://opensource.com/article/21/3/replace-ls-exa
@@ -60,6 +61,8 @@ export PATH="$DEPOT_TOOLS:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
+export PATH="$HOME/bin:$PATH"
+
 # Setting for the new UTF-8 terminal support in Lion
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
@@ -77,3 +80,5 @@ eval "$(direnv hook zsh)"
 
 export EDITOR=$(which vim)
 
+source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
