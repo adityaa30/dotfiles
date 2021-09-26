@@ -1,13 +1,15 @@
+set nocompatible
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" Better display unwanted whitespace.
+Plugin 'ntpeters/vim-better-whitespace'
 
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
@@ -21,23 +23,30 @@ Plugin 'google/vim-glaive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+" enable syntax and plugins
+syntax on                    " required
+filetype plugin indent on    " required
+
 " the glaive#Install() should go after the "call vundle#end()"
 call glaive#Install()
 
 " Autoformatting (github.com/google/vim-codefmt)
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
   autocmd FileType dart AutoFormatBuffer dartfmt
   autocmd FileType go AutoFormatBuffer gofmt
   autocmd FileType gn AutoFormatBuffer gn
-  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType html,css,json AutoFormatBuffer js-beautify
   autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType python AutoFormatBuffer yapf
-  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-  autocmd FileType rust AutoFormatBuffer rustfmt
-  autocmd FileType vue AutoFormatBuffer prettier
+  autocmd FileType sql AutoFormatBuffer sql-lint
+  autocmd FileType python AutoFormatBuffer autopep8
 augroup END
+
+Glaive codefmt plugin[mappings]
+Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
+Glaive codefmt clang_format_style="google"
+
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -59,14 +68,7 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 
-" be iMproved, required (disable vi)
-set nocompatible              
-
-" enable syntax and plugins (for netrw)
-syntax on
-filetype plugin on 
-
-" Taken from https://www.youtube.com/watch?v=XA2WjJbmmoM&t=381s 
+" Taken from https://www.youtube.com/watch?v=XA2WjJbmmoM&t=381s
 " Title: How to Do 90% of What Plugins Do (With Just Vim)
 
 " FINDING FILES: ~
@@ -80,7 +82,7 @@ set wildmenu
 " NOW WE CAN:
 " - Hit tab to :find by partial match
 " - Use * to make it fuzzy
-" THINGS TO CONSIDER: 
+" THINGS TO CONSIDER:
 " - :b lets you autocomplete any open buffer
 " - :ls lets you list the files open in active buffer
 
@@ -134,3 +136,16 @@ vnoremap d "+d
 
 set clipboard+=unnamed
 
+" Trim whitespaces at EOL on write
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+autocmd BufWrite * call TrimWhitespace()
+
+" Make sure all types of requirements.txt files get syntax highlighting
+autocmd BufNewFile,BufRead requirements*.txt set ft=python
+
+" Make sure .aliases, .bash_aliases and similar files get syntax highlighting
+autocmd BufNewFile,BufRead *aliases set ft=sh
