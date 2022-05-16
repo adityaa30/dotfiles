@@ -1,6 +1,9 @@
 set nocompatible
 filetype off                  " required
 
+" enable fuzzy auto-complete
+set rtp+=/opt/homebrew/opt/fzf
+
 " set the runtime path to include Vundle and initialize
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -22,6 +25,9 @@ Plugin 'google/vim-glaive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+" enable better syntax highlighting for golang
+set runtimepath+=$GOROOT/misc/vim
 
 " enable syntax and plugins
 syntax on                    " required
@@ -133,6 +139,16 @@ vnoremap P "+P
 
 nnoremap dd "+dd
 vnoremap d "+d
+
+" Format paragraph (selected or not) to 80 character lines
+set textwidth=80
+nnoremap <Leader>g gqap
+xnoremap <Leader>g gqa
+
+" Prevent x and the delete key from overriding what's in the clipboard
+noremap x "_x
+noremap X "_x
+noremap <Del> "_x
 
 set clipboard+=unnamed
 
