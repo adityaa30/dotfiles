@@ -1,3 +1,5 @@
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -13,7 +15,7 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,6 +95,9 @@ export PATH=$ACTIVATOR_HOME/bin:$PATH
 export PYTHON_BIN="$HOME/Library/Python/3.9"
 export PATH=$PYTHON_BIN/bin:$PATH
 
+# Python
+source $HOME/bin/venv/bin/activate
+
 # 100ms
 export  GOPRIVATE=github.com/brytecam/*,github.com/100mslive/*
 
@@ -100,3 +105,4 @@ export  GOPRIVATE=github.com/brytecam/*,github.com/100mslive/*
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
