@@ -1,4 +1,4 @@
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -29,10 +29,9 @@ alias d="docker"
 alias g="git"
 alias dc="docker-compose"
 
-# exa
-# https://opensource.com/article/21/3/replace-ls-exa
-alias ls="exa"
-alias tree="exa --tree"
+alias ls="eza"
+alias ll="eza -l --git --git-repos"
+alias tree="eza --tree"
 alias cat="bat"
 
 # Remove `...` such that no conflics while doing `bazel test ...`
@@ -45,6 +44,19 @@ unalias '...'
 # alias jdk_11='export JAVA_HOME="$JAVA11_HOME" && export PATH="$JAVA_HOME/bin:$PATH"'
 # alias jdk_8='export JAVA_HOME="$JAVA8_HOME" && export PATH="$JAVA_HOME/bin:$PATH"'
 # jdk_8 # Use jdk 11 as the default jdk
+#
+# export JAVA_HOME=$HOME/Library/Java/JavaVirtualMachines/corretto-11.0.22/Contents/Home
+# JAVA_DIR=jbr-17.0.9
+JAVA_DIR=jdk-11.0.14.jdk
+export JAVA_HOME=$HOME/Library/Java/JavaVirtualMachines/$JAVA_DIR/Contents/Home
+
+export ANDROID_HOME=$HOME/Library/Android/sdk/platform-tools
+export PATH="$ANDROID_HOME:$PATH"
+
+# building custom webrtc/src deps
+export GN_HOME="$HOME/Documents/Dev/gn/out"
+export DEPOT_TOOLS="$HOME/Documents/100ms/webrtc/depot_tools"
+export PATH="$GN_HOME:$DEPOT_TOOLS:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -53,8 +65,8 @@ export NVM_DIR="$HOME/.nvm"
 export CUSTOM_SCRIPTS_DIR="$HOME/Documents/Scripts"
 export PATH="$CUSTOM_SCRIPTS_DIR:$PATH"
 
-export DEPOT_TOOLS="$HOME/Documents/Tools/depot_tools"
-export PATH="$DEPOT_TOOLS:$PATH"
+export DEPOT_TOOLS="$HOME/Documents/Dev/depot_tools"
+# export PATH="$DEPOT_TOOLS:$PATH"
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
@@ -79,6 +91,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# gcloud
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
 # Extra
 export HADOOP_HOME="$(brew --prefix hadoop)/libexec"
@@ -105,4 +121,14 @@ export  GOPRIVATE=github.com/brytecam/*,github.com/100mslive/*
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export PATH="/opt/homebrew/opt/go@1.18/bin:$PATH"
 
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# pnpm
+export PNPM_HOME="/Users/naruto/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
