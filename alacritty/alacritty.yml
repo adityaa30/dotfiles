@@ -1,0 +1,40 @@
+font:
+  normal:
+    family: Hack Nerd Font
+    style: Regular
+  bold:
+    family: Hack Nerd Font
+    style: Bold
+
+env:
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: xterm-256color
+
+cursor:
+  # Block Underline or Beam
+  style: Block
+
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # copies selected text to clipboard
+  save_to_clipboard: true
+
+# Login shell with arguments
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
+# Startup directory, unset or None for home directory
+working_directory: None
+
+key_bindings:
+  - { key: Right, mods: Alt, chars: "\x1BF" }
+  - { key: Left, mods: Alt, chars: "\x1BB" }
+

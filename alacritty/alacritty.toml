@@ -1,0 +1,37 @@
+
+[cursor]
+style = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+chars = "\u001BF"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BB"
+key = "Left"
+mods = "Alt"
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[general]
+working_directory = "None"
+
+[terminal]
+
+[terminal.shell]
+args = ["--login"]
+program = "/bin/zsh"
